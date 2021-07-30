@@ -23,10 +23,16 @@ class BookController extends Controller
 
         return json_encode($books);
     }
-    public function index($order='id')
+    public function index()
     {
+            if(auth()->user() !== null) {
+                return view('welcome');
+            }else{
 
-            return view('welcome');
+                return view('auth.login');
+
+
+            }
     }
     public function fetchBooks($order){
 
